@@ -1,0 +1,76 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 200
+      min-spare: 10
+
+spring:
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:/ehcache.xml
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/crm?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 600000
+      pool-name: mysql-pool
+      max-lifetime: 600000
+      connection-timeout: 30000
+      connection-test-query: select 1
+      validation-timeout: 30000
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+      readOnly: false
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
+    show-sql: true
+  main:
+    allow-circular-references: true
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+  mvc:
+    converters:
+      preferred-json-mapper: fastjson
+    format:
+      date: yyyy-MM-dd
+      time: HH:mm:ss
+      date-time: yyyy-MM-dd HH:mm:ss
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    static-path-pattern: /**
+    view:
+      prefix: /jsp/
+      suffix: .jsp
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:/html/
+
+logging:
+  file:
+    path: ./target/logs
+  level:
+    web: DEBUG

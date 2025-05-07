@@ -1,0 +1,15 @@
+package com.fit.dao;
+
+import com.fit.base.BaseDAO;
+import com.fit.entity.CstCustomer;
+import org.springframework.stereotype.Repository;
+
+/**
+ * @AUTO
+ * @Author AIM
+ * @DATE 2025/5/6
+ */
+@Repository
+public class CstCustomerDAO extends BaseDAO<CstCustomer, Long> {
+
+}
